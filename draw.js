@@ -5,6 +5,7 @@ const rows = canvas.height / scale;
 const columns = canvas.width / scale;
 
 var snake;
+var close;
 
 (function setup(){
   snake = new Snake();
@@ -12,7 +13,7 @@ var snake;
 
   fruit.pickLocation();
 
-  window.setInterval(() => {
+  close = window.setInterval(() => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     fruit.draw();
     snake.update();
@@ -23,7 +24,7 @@ var snake;
       fruit.draw();
     }
 
-    snake.checkCollision();
+    snake.checkCollision(close);
 
     document.querySelector('.score').innerText = snake.total;
   }, 200);
